@@ -1,0 +1,26 @@
+{
+  "export": {
+    "destination": "H:\\TTS training factory\\projects\\english-1000\\exports\\NC_Voice_Dataset",
+    "accepted_count": 817,
+    "accepted_seconds": 4954.319999999997,
+    "warnings": []
+  },
+  "integrity": {
+    "valid": true,
+    "issues": [],
+    "warnings": [],
+    "accepted_count": 817,
+    "accepted_seconds": 4954.319999999997
+  },
+  "saved_huggingface_rows": {
+    "train": 735,
+    "validation": 82
+  },
+  "standalone_loader_rows": {
+    "train": 735,
+    "validation": 82
+  },
+  "all_embedded_wav_hashes_and_transcripts_verified": true,
+  "original_1000_target_reached": false,
+  "user_requested_stop": true
+}

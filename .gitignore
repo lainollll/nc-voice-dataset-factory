@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+projects/
+smoke-output/
+*.log
+*.local.json
+.artifacts/
+
+# Local datasets, training runtime, and generated distributions.
+/DATASET/
+/Fem demon/
+/lfm3-training/
+/build/
+/dist/

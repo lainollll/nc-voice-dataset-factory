@@ -1,0 +1,229 @@
+{
+  "sequential": {
+    "result": {
+      "accepted": 10,
+      "rejected": 0,
+      "failed": 0,
+      "pending": 0,
+      "total": 10,
+      "accepted_seconds": 63.28,
+      "attempts": 10,
+      "integrity_holds": 0,
+      "status": "COMPLETED",
+      "error": ""
+    },
+    "wall_seconds": 93.23011849999602,
+    "project": "H:\\TTS training factory\\projects\\gpu-performance-sequential",
+    "workers": [
+      {
+        "pid": null,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482141.632323,
+        "inference_finished_at": 1793482146.1048524,
+        "wer": 0.0,
+        "cer": 0.0
+      },
+      {
+        "pid": null,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482151.835983,
+        "inference_finished_at": 1793482157.0636387,
+        "wer": 0.0,
+        "cer": 0.0
+      },
+      {
+        "pid": null,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482160.6963594,
+        "inference_finished_at": 1793482165.4103982,
+        "wer": 0.0,
+        "cer": 0.0
+      },
+      {
+        "pid": null,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482168.4953687,
+        "inference_finished_at": 1793482171.5923355,
+        "wer": 0.0,
+        "cer": 0.0
+      },
+      {
+        "pid": null,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482174.4962075,
+        "inference_finished_at": 1793482177.2110186,
+        "wer": 0.0,
+        "cer": 0.0
+      },
+      {
+        "pid": null,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482180.2147472,
+        "inference_finished_at": 1793482184.1654046,
+        "wer": 0.0,
+        "cer": 0.0
+      },
+      {
+        "pid": null,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482187.907868,
+        "inference_finished_at": 1793482191.553247,
+        "wer": 0.0,
+        "cer": 0.0
+      },
+      {
+        "pid": null,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482194.685067,
+        "inference_finished_at": 1793482198.9423501,
+        "wer": 0.0,
+        "cer": 0.0
+      },
+      {
+        "pid": null,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482202.2478883,
+        "inference_finished_at": 1793482206.139469,
+        "wer": 0.0,
+        "cer": 0.0
+      },
+      {
+        "pid": null,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482209.4172974,
+        "inference_finished_at": 1793482212.9683566,
+        "wer": 0.0,
+        "cer": 0.0
+      }
+    ]
+  },
+  "parallel": {
+    "result": {
+      "accepted": 10,
+      "rejected": 0,
+      "failed": 0,
+      "pending": 0,
+      "total": 10,
+      "accepted_seconds": 62.48,
+      "attempts": 10,
+      "integrity_holds": 0,
+      "status": "COMPLETED",
+      "error": "",
+      "runtime": {
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce RTX 4090",
+        "workers": 2,
+        "free_gb": 11.580078125,
+        "estimated_required_gb": 9.0,
+        "asr_device": "cpu",
+        "overlap_quality": true
+      }
+    },
+    "wall_seconds": 66.01041760000226,
+    "project": "H:\\TTS training factory\\projects\\gpu-performance-parallel",
+    "workers": [
+      {
+        "pid": 17196,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482240.088649,
+        "inference_finished_at": 1793482245.2696264,
+        "wer": 0.0,
+        "cer": 0.0
+      },
+      {
+        "pid": 46476,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482240.4049006,
+        "inference_finished_at": 1793482244.391324,
+        "wer": 0.0,
+        "cer": 0.0
+      },
+      {
+        "pid": 46476,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482244.431067,
+        "inference_finished_at": 1793482248.3230402,
+        "wer": 0.0,
+        "cer": 0.0
+      },
+      {
+        "pid": 17196,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482250.591741,
+        "inference_finished_at": 1793482255.6130579,
+        "wer": 0.0,
+        "cer": 0.0
+      },
+      {
+        "pid": 46476,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482254.1061664,
+        "inference_finished_at": 1793482261.3051863,
+        "wer": 0.0,
+        "cer": 0.0
+      },
+      {
+        "pid": 17196,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482258.1434207,
+        "inference_finished_at": 1793482262.6124454,
+        "wer": 0.0,
+        "cer": 0.0
+      },
+      {
+        "pid": 46476,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482261.9638286,
+        "inference_finished_at": 1793482265.5934207,
+        "wer": 0.0,
+        "cer": 0.0
+      },
+      {
+        "pid": 17196,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482266.1977503,
+        "inference_finished_at": 1793482269.326661,
+        "wer": 0.0,
+        "cer": 0.0
+      },
+      {
+        "pid": 46476,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482269.7525735,
+        "inference_finished_at": 1793482272.022145,
+        "wer": 0.0,
+        "cer": 0.0
+      },
+      {
+        "pid": 17196,
+        "device": "cuda:0",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "inference_started_at": 1793482273.0523314,
+        "inference_finished_at": 1793482275.5693774,
+        "wer": 0.0,
+        "cer": 0.0
+      }
+    ]
+  },
+  "concurrent_gpu_inference_pairs": 5,
+  "end_to_end_speedup": 1.412354623552523
+}

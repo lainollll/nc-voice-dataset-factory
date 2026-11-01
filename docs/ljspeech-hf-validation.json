@@ -1,0 +1,23 @@
+{
+  "folder": "H:\\TTS training factory\\projects\\english-1000\\exports\\NC_Voice_Dataset_LJSpeech_HF\\ljspeech_hf",
+  "split": "full",
+  "rows": 817,
+  "columns": [
+    "file",
+    "spoken_text",
+    "normalized_text",
+    "audio"
+  ],
+  "audio_rate": 22050,
+  "accepted_seconds_after_resampling": 4954.319999999997,
+  "parent_export_integrity": {
+    "valid": true,
+    "issues": [],
+    "warnings": [],
+    "accepted_count": 817,
+    "accepted_seconds": 4954.319999999997
+  },
+  "all_embedded_audio_hashes_and_transcripts_verified": true,
+  "reference_format": "https://huggingface.co/datasets/MikhailT/lj-speech",
+  "reference_revision": "f04bb20ddce4b1dbcfb95b10e5573121d871bf5f"
+}

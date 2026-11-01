@@ -1,0 +1,43 @@
+{
+  "job_status": "STOPPED",
+  "accepted_count": 817,
+  "accepted_seconds": 4954.32,
+  "attempt_count": 925,
+  "attempt_states": {
+    "ACCEPTED": 789,
+    "REJECTED": 136
+  },
+  "max_wer": 0.1,
+  "max_cer": 0.07547169811320754,
+  "zero_wer_count": 701,
+  "zero_cer_count": 701,
+  "native_revalidated_accepted": 28,
+  "categories": {
+    "conversation": 48,
+    "questions": 47,
+    "replies": 49,
+    "long_sentences": 49,
+    "narration": 49,
+    "technical": 49,
+    "numbers": 48,
+    "dates": 47,
+    "addresses": 46,
+    "names": 49,
+    "phonetic": 48,
+    "commands": 49,
+    "emotional": 49,
+    "humor": 46,
+    "greetings": 48,
+    "difficult": 48,
+    "custom": 48
+  },
+  "terminal_rejection_reasons": {
+    "transcript_wer": 9,
+    "transcript_cer": 4
+  },
+  "independent_speaker_verification": "disabled",
+  "reference_sha256": "343b89fed9c984b8e9c0e63c1132def0141211d40965a3f9ad01a3a7da99c057",
+  "issues": [],
+  "valid_snapshot": true,
+  "target_complete": false
+}

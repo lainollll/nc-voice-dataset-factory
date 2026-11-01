@@ -1,0 +1,7 @@
+PySide6==6.11.2
+numpy==1.26.4
+scipy==1.13.1
+soundfile==0.13.1
+filelock==3.20.0
+num2words==0.5.14
+requests==2.32.5
