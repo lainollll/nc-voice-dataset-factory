@@ -113,6 +113,10 @@ class TrainingController(QObject):
         return training_python(self.root).is_file() and (self.root / "environment_ready.json").is_file()
 
     @property
+    def stage(self) -> str:
+        return self._stage
+
+    @property
     def run_root(self) -> Path | None:
         return self._prepared.run_root if self._prepared else None
 

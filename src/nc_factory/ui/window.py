@@ -91,6 +91,7 @@ class MainWindow(
         self.setCentralWidget(body)
         layout = QHBoxLayout(body)
         self.navigation = QListWidget()
+        self.navigation.setObjectName("workspaceNavigation")
         self.navigation.setMaximumWidth(220)
         self.pages = QStackedWidget()
         layout.addWidget(self.navigation)
@@ -118,6 +119,7 @@ class MainWindow(
         self._browser_page()
         self._export_page()
         self._training_page()
+        self.navigation.currentRowChanged.connect(self._page_changed)
         self.open_page("Dashboard" if project_root else "Getting Started")
         self.metrics_timer = QTimer(self)
         self.metrics_timer.setInterval(15000)
@@ -129,9 +131,11 @@ class MainWindow(
 
     def page(self, title: str, subtitle: str) -> QVBoxLayout:
         page = QWidget()
+        page.setObjectName("workspacePage")
         layout = QVBoxLayout(page)
         layout.setContentsMargins(28, 24, 28, 24)
         heading = QLabel(title)
+        heading.setWordWrap(True)
         heading.setObjectName("title")
         sub = QLabel(subtitle)
         sub.setObjectName("subtitle")
@@ -159,6 +163,14 @@ class MainWindow(
             if self.navigation.item(index).text() == title:
                 self.navigation.setCurrentRow(index)
                 return
+
+    @Slot(int)
+    def _page_changed(self, index: int) -> None:
+        if self.navigation.item(index).text() == "LFM3 Fine-tuning":
+            self.guide.show_training_help()
+            self._refresh_training_source()
+        elif self.navigation.item(index).text() == "Voice Manager":
+            self.guide.show_voice_preview_help()
 
     @Slot()
     def focus_guide(self) -> None:
@@ -255,6 +267,10 @@ class MainWindow(
             return
         self._aux_handler = handler
         self.aux_runner.start(task)
+        if hasattr(self, "preview_button"):
+            self._update_voice_preview_controls()
+        if hasattr(self, "training_start"):
+            self._update_training_controls()
 
     @Slot(object)
     def _aux_result(self, result: Any) -> None:
@@ -371,9 +387,7 @@ class MainWindow(
         self.speaker_model.setText(config.quality.speaker_model_path)
         self.speaker_calibration.setText(config.quality.speaker_calibration_path)
 
-    def configuration(self) -> ProjectConfig:
-        if self.repo is None:
-            raise ValueError("Create or open a project first")
+    def voice_configuration(self) -> tuple[VoiceProfile, SynthesisSettings]:
         reference = Path(self.reference_path.text()).resolve()
         settings = SynthesisSettings(
             engine=self.engine.currentData(),
@@ -405,6 +419,12 @@ class MainWindow(
             if settings.engine == "documented-service"
             else "",
         )
+        return voice, settings
+
+    def configuration(self) -> ProjectConfig:
+        if self.repo is None:
+            raise ValueError("Create or open a project first")
+        voice, settings = self.voice_configuration()
         config = ProjectConfig(
             self._last_config.name if self._last_config else self.repo.root.name,
             voice,
@@ -499,6 +519,8 @@ class MainWindow(
         self._task_cancel.clear()
         self.job_selector.setEnabled(False)
         self.runner.start(task)
+        self._update_voice_preview_controls()
+        self._update_training_controls()
 
     @Slot(object)
     def _result(self, result: Any) -> None:
@@ -555,7 +577,8 @@ class MainWindow(
         )
 
     def closeEvent(self, event: QCloseEvent) -> None:
-        if self.runner.busy or self.aux_runner.busy or self.training_busy:
+        self.training_source_timer.stop()
+        if self.runner.busy or self.aux_runner.busy or self.training_busy or self.training_inspector.busy:
             self._closing = True
             self.stop_job()
             self.training_controller.stop()

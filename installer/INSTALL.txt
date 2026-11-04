@@ -1,0 +1,36 @@
+NC Voice Dataset Factory - Windows installation
+
+This installer downloads Python 3.11, Git, FFmpeg and the pinned app packages
+as needed. Keep the dependency setup window open until it finishes.
+Internet access is required. Downloads can take a while.
+
+Requirements
+- Windows 11, 64-bit Intel/AMD.
+- A local NTFS drive with room for packages, models and recordings. Plan for
+  at least 20 GB initially, plus additional space for your datasets/training.
+- An NVIDIA CUDA-compatible GPU and current NVIDIA driver for speech generation.
+- Microsoft App Installer (WinGet), available from Microsoft Store.
+
+Install into a writable folder. The default is inside your Windows user folder.
+Close the app before installing an update. Prerequisite installers may request
+Windows administrator approval.
+
+After setup
+1. Open NC Voice Dataset Factory from the Start menu.
+2. On Getting Started, select your reference WAV, language and a small target.
+3. Confirm you have permission to use the voice.
+4. Use Inspect missing models and Download models if model weights are missing.
+5. Generate a small test dataset and listen to the accepted recordings.
+
+If setup fails, open Repair setup from the Start menu or run Repair_Setup.cmd
+in the installation folder. Logs are in that folder's setup-logs directory.
+The installation guide is docs\INSTALLATION.md; detailed usage is docs\USER_GUIDE.md.
+
+Resume after stopping or a crash
+Choose Create / Open project, select the original project folder, then open
+Batch Generator, select the saved job and click Resume. Accepted recordings
+are preserved. Do not start a replacement job to recover existing progress.
+
+Uninstall removes installed application files and shortcuts. Locally created
+environments, model weights, projects, recordings, exports and logs are retained.
+Back up those files before manually removing any remaining installation folder.

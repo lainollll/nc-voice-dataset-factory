@@ -30,14 +30,14 @@ class WaveformWidget(QWidget):
         painter = QPainter(self)
         try:
             rect = self.rect()
-            painter.fillRect(rect, QColor("#14181c"))
+            painter.fillRect(rect, QColor("#11161d"))
             mid_y = rect.top() + rect.height() / 2.0
             half_h = rect.height() / 2.0 - 6.0
-            painter.setPen(QPen(QColor("#2a3138"), 1))
+            painter.setPen(QPen(QColor("#283342"), 1))
             painter.drawLine(rect.left() + 6, int(mid_y), rect.right() - 6, int(mid_y))
 
             if self._peaks and rect.width() > 12 and half_h > 0:
-                painter.setPen(QPen(QColor("#28d7e5"), 1))
+                painter.setPen(QPen(QColor("#66d9ef"), 1))
                 n = len(self._peaks)
                 usable = rect.width() - 12
                 for i, (lo, hi) in enumerate(self._peaks):

@@ -15,6 +15,9 @@ nc-voice-factory = "nc_factory.cli:main"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+nc_factory = ["ui/assets/*.svg"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]

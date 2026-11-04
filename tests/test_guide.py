@@ -14,7 +14,7 @@ def test_first_launch_guide_walks_to_existing_pages_without_starting_work(qtbot)
     window.show()
     assert window.navigation.currentItem().text() == "Getting Started"
     guide = window.guide
-    assert guide.steps.count() == 4
+    assert guide.steps.count() == 5
     assert "WAV" in guide.instructions.toPlainText()
     guide.mode.setCurrentIndex(1)
     assert guide.steps.count() == 8

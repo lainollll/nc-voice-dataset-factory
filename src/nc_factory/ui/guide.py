@@ -69,7 +69,7 @@ STEPS = (
         <ol><li>Enter a voice name and use <b>Import reference WAV</b> to select your recording.</li>
         <li>Choose <b>English</b> or <b>Swedish</b>. Swedish needs a multilingual speech model.</li>
         <li>Confirm that you own or have permission to use the voice.</li>
-        <li>Click <b>Save voice / project</b>, then <b>Test Voice</b>.</li>
+        <li>Click <b>Save voice / project</b>, then <b>Generate voice preview</b>.</li>
         <li>Listen to the preview. Use <b>Play reference</b> to compare it with your recording.</li></ol>
         <p>A reference WAV is the voice sample, not the model folder. Both are needed.
         If generation reports a missing model, return to step 2 and check the selected folder.</p>
@@ -193,6 +193,27 @@ SIMPLE_STEPS = (
         "Open simple setup",
     ),
     GuideStep(
+        "Optional: preview your voice",
+        "Voice Manager",
+        """
+        <ol><li>Use <b>Preview voice and Chatterbox settings</b> on Getting Started
+        to bring your chosen WAV into Voice Manager.</li>
+        <li>Confirm voice permission and click <b>Find local model</b> if needed.
+        Model folders and saved profiles are under the expandable details.</li>
+        <li>Adjust <b>Variation in delivery</b> (temperature), <b>Expressiveness</b>
+        (exaggeration), and <b>Voice guidance</b> (CFG). You can drag the sliders
+        or type exact values.</li>
+        <li>Enter a short sentence and click <b>Generate voice preview</b>. Use
+        <b>Replay</b>, <b>Stop</b>, and <b>Reference</b> to compare the audio.</li></ol>
+        <p>These are Chatterbox/reference-voice previews, not previews of a trained
+        LFM3 adapter. Previewing does not create dataset records or save settings.</p>
+        <p>Open or create a project and use <b>Save voice / project</b> to keep
+        settings for new <b>Batch Generator</b> jobs. Getting Started uses its
+        automatic dataset settings. Existing jobs keep their saved settings.</p>
+        """,
+        "Open Voice Manager",
+    ),
+    GuideStep(
         "Let the app generate",
         "Getting Started",
         """
@@ -226,15 +247,19 @@ SIMPLE_STEPS = (
         "Optional: fine-tune LFM3",
         "LFM3 Fine-tuning",
         """
-        <ol><li>Open <b>LFM3 Fine-tuning</b> or use <b>Fine-tune with LFM3</b> on Getting Started.</li>
-        <li>Click <b>Set up training environment</b> once. This installs training packages
-        separately from speech generation.</li>
-        <li>Leave the dataset field empty to use the current project's accepted recordings,
-        or choose an existing export. Voice name is filled from the dataset.</li>
-        <li>Click <b>Start fine-tuning</b>. The first run downloads the LFM3 model and codec.</li></ol>
-        <p>Follow training steps and logs on the card. <b>Stop and save</b> stops at a training
-        step; <b>Force stop</b> discards current unsaved work. Use <b>Open run / checkpoints</b>
-        to find the notebook, log, checkpoints and trained LoRA adapter.</p>
+        <ol><li>In <b>1. Choose your recordings</b>, select the current project or a saved
+        dataset export. Check the voice, accepted count and duration shown below it.</li>
+        <li>In <b>2. Prepare training</b>, set up the separate training tools if they are
+        missing. If it says Ready, you can continue. Repair is optional.</li>
+        <li>In <b>3. Train and save your voice</b>, click <b>Start fine-tuning</b>.
+        The first run downloads the LFM3 model and codec.</li></ol>
+        <p>Start is available when recordings and tools are ready and other work has finished.
+        The initial 200 steps are a short test; change the length under <b>Advanced training options</b>.</p>
+        <p>Follow the loading, encoding, training and saving stages. <b>Stop and save</b>
+        requests a safe stop. Logs and emergency <b>Force stop</b> are under
+        <b>Technical details and logs</b>.</p>
+        <p>After success, use <b>Open saved voice files</b>. The result is an LFM3
+        adapter; Chatterbox previews use the reference voice separately.</p>
         """,
         "Open LFM3 Fine-tuning",
     ),
@@ -245,6 +270,14 @@ class GettingStartedGuide(QWidget):
     navigate_requested = Signal(str)
     project_requested = Signal()
     small_test_requested = Signal()
+
+    def show_training_help(self) -> None:
+        if self.mode.currentIndex() == 0:
+            self.steps.setCurrentRow(len(SIMPLE_STEPS) - 1)
+
+    def show_voice_preview_help(self) -> None:
+        if self.mode.currentIndex() == 0:
+            self.steps.setCurrentRow(next(i for i, step in enumerate(SIMPLE_STEPS) if step.page == "Voice Manager"))
 
     def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__(parent)

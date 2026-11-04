@@ -43,6 +43,7 @@ class QuickStartPage(QWidget):
     stop_requested = Signal()
     export_requested = Signal()
     train_requested = Signal()
+    preview_requested = Signal()
 
     def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__(parent)
@@ -94,6 +95,9 @@ class QuickStartPage(QWidget):
         self.models_button = QPushButton("Inspect missing models")
         self.models_button.clicked.connect(self.models_requested.emit)
         layout.addWidget(self.models_button)
+        self.preview_voice_button = QPushButton("Preview voice and Chatterbox settings…")
+        self.preview_voice_button.clicked.connect(self.preview_requested.emit)
+        layout.addWidget(self.preview_voice_button)
         self.progress = QProgressBar()
         self.progress.setRange(0, 100)
         self.progress.setValue(0)
@@ -206,10 +210,30 @@ class QuickStartMixin:
         self.quick_start.stop_requested.connect(self.stop_job)
         self.quick_start.export_requested.connect(self._quick_export)
         self.quick_start.train_requested.connect(lambda: self.open_page("LFM3 Fine-tuning"))
+        self.quick_start.preview_requested.connect(self._open_quick_voice_preview)
         self.runner.finished.connect(self._continue_quick_start)
         self.aux_runner.finished.connect(self._continue_quick_start)
         self.runner.error.connect(self._quick_error)
         self.progress_event.connect(self._quick_progress)
+
+    @Slot()
+    def _open_quick_voice_preview(self) -> None:
+        if self.runner.busy or self.aux_runner.busy or self.training_busy or self._closing:
+            self.quick_start.status.setText("Wait for the current operation before changing preview settings.")
+            return
+        reference = self.quick_start.reference.text().strip()
+        engine_changed = False
+        if reference:
+            self.reference_path.setText(reference)
+            language = self.quick_start.language.currentData()
+            self.language.setCurrentIndex(self.language.findData(language))
+            self.permission.setChecked(self.quick_start.permission.isChecked())
+            if language == "sv" and self.engine.currentData() == "english":
+                self.engine.setCurrentIndex(self.engine.findData("multilingual-v3"))
+                engine_changed = True
+        self.open_page("Voice Manager")
+        if (engine_changed or not self.model_path.text().strip()) and self.engine.currentData() in {"english", "multilingual-v2", "multilingual-v3"}:
+            self.find_preview_models()
 
     def _quick_operation(self, task: Callable, handler: Callable, message: str) -> None:
         if self.runner.busy or self.aux_runner.busy or self.training_busy or self._quick_next is not None:
